@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: template-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/sbt?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root1234
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        highlight_sql: true
+    open-in-view: true
