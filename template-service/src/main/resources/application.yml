@@ -5,15 +5,19 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/sbt?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: root1234
+    password: root
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
     properties:
       hibernate:
         show_sql: true
         format_sql: true
         highlight_sql: true
     open-in-view: true
+    defer-datasource-initialization: false
