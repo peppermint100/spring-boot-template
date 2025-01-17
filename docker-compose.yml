@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    platform: linux/amd64
+    ports:
+      - "3307:3306"
+    networks:
+      - sbt-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sbt
+
+networks:
+  sbt-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16
