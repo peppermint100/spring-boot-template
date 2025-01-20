@@ -21,22 +21,24 @@ public class TemplateController {
     private final TemplateService templateService;
 
     @PostMapping
-    public ResponseEntity<TemplateVO> addTemplate(@RequestBody  CreateTemplateRequest request) {
+    public ResponseEntity<GlobalResponse> addTemplate(@RequestBody  CreateTemplateRequest request) {
         String name = request.getName();
         TemplateDto templateDto = templateService.addTemplate(name);
         TemplateVO templateVO = TemplateVO.of(templateDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(templateVO);
+        GlobalResponse<TemplateVO> response = GlobalResponse.<TemplateVO>builder().message("템플릿을 추가했습니다.").data(templateVO).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{templateId}")
-    public ResponseEntity<TemplateVO> updateTemplate(
+    public ResponseEntity<GlobalResponse> updateTemplate(
             @PathVariable("templateId") UUID templateId,
             @RequestBody UpdateTemplateRequest request
     ) {
         String name = request.getName();
         TemplateDto templateDto = templateService.updateTemplate(templateId, name);
         TemplateVO templateVO = TemplateVO.of(templateDto);
-        return ResponseEntity.status(HttpStatus.OK).body(templateVO);
+        GlobalResponse<TemplateVO> response = GlobalResponse.<TemplateVO>builder().message("템플릿을 변경했습니다.").data(templateVO).build();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping("/{templateId}")
