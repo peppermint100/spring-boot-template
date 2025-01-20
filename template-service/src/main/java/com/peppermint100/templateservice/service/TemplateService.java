@@ -16,8 +16,8 @@ public class TemplateService {
     private final TemplateQueryService templateQueryService;
     private final TemplateRepository templateRepository;
 
-    public TemplateDto addTemplate(String name) {
-        Template template = Template.of(name);
+    public TemplateDto addTemplate(UUID userId, String name) {
+        Template template = Template.of(userId, name);
         Template createdTemplate = templateRepository.save(template);
         return TemplateDto.of(createdTemplate);
     }
