@@ -23,11 +23,12 @@ public class TemplateServiceTests {
 
     @Test
     void 템플릿_수정_시_이름이_바뀐다() {
+        UUID dummyUserId = UUID.randomUUID();
         UUID dummyTemplateId = UUID.randomUUID();
         String oldTemplateName = "oldTemplateName";
         String newTemplateName = "newTemplateName";
-        Template oldTemplate = Template.of(oldTemplateName);
-        Template newTemplate = Template.of(newTemplateName);
+        Template oldTemplate = Template.of(dummyUserId, oldTemplateName);
+        Template newTemplate = Template.of(dummyUserId, newTemplateName);
 
         // given
         BDDMockito.given(templateQueryService.getTemplateById(dummyTemplateId))

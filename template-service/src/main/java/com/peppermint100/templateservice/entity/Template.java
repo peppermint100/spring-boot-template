@@ -25,6 +25,9 @@ public class Template {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -36,12 +39,13 @@ public class Template {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    private Template(String name) {
+    private Template(UUID userId, String name) {
+        this.userId = userId;
         this.name = name;
     }
 
-    public static Template of(String name) {
-        return new Template(name);
+    public static Template of(UUID userId, String name) {
+        return new Template(userId, name);
     }
 
     public void updateName(String name) {

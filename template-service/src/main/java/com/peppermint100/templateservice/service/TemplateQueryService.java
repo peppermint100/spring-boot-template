@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -14,6 +15,11 @@ import java.util.UUID;
 public class TemplateQueryService {
 
     private final TemplateRepository templateRepository;
+
+    @Transactional(readOnly = true)
+    public List<Template> getTemplatesByUserId(UUID userId) {
+        return templateRepository.findAllByUserId(userId);
+    }
 
     @Transactional(readOnly = true)
     public Template getTemplateById(UUID id) {
