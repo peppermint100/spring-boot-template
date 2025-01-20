@@ -3,6 +3,7 @@ package com.peppermint100.templateservice.controller;
 import com.peppermint100.templateservice.dto.TemplateDto;
 import com.peppermint100.templateservice.service.TemplateService;
 import com.peppermint100.templateservice.vo.CreateTemplateRequest;
+import com.peppermint100.templateservice.vo.GlobalResponse;
 import com.peppermint100.templateservice.vo.TemplateVO;
 import com.peppermint100.templateservice.vo.UpdateTemplateRequest;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,12 @@ public class TemplateController {
         TemplateDto templateDto = templateService.updateTemplate(templateId, name);
         TemplateVO templateVO = TemplateVO.of(templateDto);
         return ResponseEntity.status(HttpStatus.OK).body(templateVO);
+    }
+
+    @DeleteMapping("/{templateId}")
+    public ResponseEntity<GlobalResponse> deleteTemplate(@PathVariable("templateId") UUID templateId) {
+        templateService.deleteTemplate(templateId);
+        GlobalResponse<Object> response = GlobalResponse.builder().message("템플릿을 삭제했습니다.").build();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

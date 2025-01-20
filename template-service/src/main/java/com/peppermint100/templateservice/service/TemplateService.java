@@ -29,4 +29,10 @@ public class TemplateService {
         Template updatedTemplate = templateRepository.saveAndFlush(template); // updatedAt 값 반영을 위한 saveAndFlush
         return TemplateDto.of(updatedTemplate);
     }
+
+    @Transactional
+    public void deleteTemplate(UUID id) {
+        Template template = templateQueryService.getTemplateById(id);
+        templateRepository.delete(template);
+    }
 }
