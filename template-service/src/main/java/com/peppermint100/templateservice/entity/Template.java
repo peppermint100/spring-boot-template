@@ -43,4 +43,8 @@ public class Template {
     public static Template of(String name) {
         return new Template(name);
     }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
 }
