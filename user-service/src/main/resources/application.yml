@@ -12,6 +12,8 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+    table: flyway_schema_user_service
+    locations: classpath:db/migration
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
