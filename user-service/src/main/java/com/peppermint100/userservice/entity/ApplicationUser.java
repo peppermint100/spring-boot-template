@@ -2,6 +2,7 @@ package com.peppermint100.userservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class ApplicationUser {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,4 +38,13 @@ public class ApplicationUser {
     @LastModifiedDate
     @Column(name = "updated_at")
     private Instant updatedAt;
+
+    private ApplicationUser(String email, String encryptedPassword) {
+        this.email = email;
+        this.password = encryptedPassword;
+    }
+
+    public static ApplicationUser of(String email, String encryptedPassword) {
+        return new ApplicationUser(email, encryptedPassword);
+    }
 }
