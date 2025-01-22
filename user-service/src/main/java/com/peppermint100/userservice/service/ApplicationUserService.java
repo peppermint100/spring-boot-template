@@ -5,13 +5,20 @@ import com.peppermint100.userservice.entity.ApplicationUser;
 import com.peppermint100.userservice.exception.FailToSignUpException;
 import com.peppermint100.userservice.repository.ApplicationUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
-public class ApplicationUserService {
+public class ApplicationUserService implements UserDetailsService {
 
     private final ApplicationUserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -36,4 +43,19 @@ public class ApplicationUserService {
 
         return ApplicationUserDto.of(userEntity);
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<ApplicationUser> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isEmpty()) {
+            throw new UsernameNotFoundException("존재하지 않는 유저입니다.");
+        }
+
+        ApplicationUser user = userOptional.get();
+
+        return new User(user.getEmail(), user.getPassword(), List.of());
+    }
+
+
 }
