@@ -30,8 +30,11 @@ dependencies {
     implementation group: 'org.flywaydb', name: 'flyway-mysql', version: '11.1.1'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // security
+    implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // dev
     compileOnly 'org.projectlombok:lombok'
