@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: template-service
@@ -19,5 +22,5 @@ spring:
         show_sql: true
         format_sql: true
         highlight_sql: true
-    open-in-view: true
+    open-in-view: false
     defer-datasource-initialization: false
