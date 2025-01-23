@@ -23,6 +23,17 @@ services:
       - SPRING_PROFILES_ACTIVE=localdocker
     depends_on:
       - mysql
+  template-service:
+    container_name: template-service
+    image: template-service:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - sbt-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdocker
+    depends_on:
+      - mysql
 
 networks:
   sbt-network:

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: template-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/sbt?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        highlight_sql: true
+    open-in-view: false
+    defer-datasource-initialization: false
