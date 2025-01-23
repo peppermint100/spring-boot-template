@@ -12,6 +12,15 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=sbt
+  user-service:
+    container_name: user-service
+    image: user-service:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - sbt-network
+    depends_on:
+      - mysql
 
 networks:
   sbt-network:

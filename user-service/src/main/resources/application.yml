@@ -6,7 +6,7 @@ spring:
     name: user-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/sbt?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://mysql:3306/sbt?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: root
   flyway:
