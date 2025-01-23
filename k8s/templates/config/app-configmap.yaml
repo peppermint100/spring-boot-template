@@ -3,7 +3,4 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  MYSQL_HOST: mysql
-  MYSQL_PORT: "3306"
-  MYSQL_DATABASE: sbt
   ACTIVE_PROFILES: k8s
