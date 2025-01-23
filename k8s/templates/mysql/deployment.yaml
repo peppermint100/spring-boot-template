@@ -18,8 +18,14 @@ spec:
         image: {{ .Values.mysql.image }}
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: {{ .Values.mysql.rootPassword }}
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_DATABASE
-          value: {{ .Values.mysql.database }}
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MYSQL_DATABASE
         ports:
         - containerPort: 3306
