@@ -12,6 +12,28 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=sbt
+  user-service:
+    container_name: user-service
+    image: user-service:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - sbt-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdocker
+    depends_on:
+      - mysql
+  template-service:
+    container_name: template-service
+    image: template-service:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - sbt-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdocker
+    depends_on:
+      - mysql
 
 networks:
   sbt-network:

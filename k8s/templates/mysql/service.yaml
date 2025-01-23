@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  type: NodePort
+  ports:
+  - port: 3306 # 컨테이너간 통신
+    targetPort: 3306 # 컨테이너 내부의 포트
+    nodePort: 30306 # NodePort로 배포되는 포트
+  selector:
+    app: mysql

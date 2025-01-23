@@ -1,0 +1,14 @@
+mysql:
+  image: mysql:8.0
+  rootPassword: root
+  database: sbt
+
+userService:
+  image: user-service:latest
+  replicas: 1
+  port: 8081
+
+templateService:
+  image: template-service:latest
+  replicas: 1
+  port: 8080
