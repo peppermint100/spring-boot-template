@@ -6,12 +6,14 @@ spring:
     name: template-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/sbt?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: root
+    password: ${MYSQL_ROOT_PASSWORD}
   flyway:
     enabled: true
     baseline-on-migrate: true
+    table: flyway_schema_template_service
+    locations: classpath:db/migration
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect

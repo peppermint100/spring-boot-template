@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: template-service
+spec:
+  type: NodePort
+  ports:
+  - port: {{ .Values.templateService.port }} # 컨테이너간 통신
+    targetPort: {{ .Values.templateService.port }} # 컨테이너 내부의 포트
+    nodePort: 30301 # NodePort로 배포되는 포트
+  selector:
+    app: template-service
