@@ -19,6 +19,8 @@ services:
       - "8081:8081"
     networks:
       - sbt-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdocker
     depends_on:
       - mysql
 
